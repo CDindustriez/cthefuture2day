@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caleb Dixon — Brand & Logo Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F5F6F4;
+    --bg-card:#FFFFFF;
+    --ink:#14161A;
+    --ink-soft:#4A4D53;
+    --muted:#8A8D91;
+    --coral:#FF4D6D;
+    --coral-soft:#FFE3E8;
+    --indigo:#4C5FFF;
+    --indigo-soft:#E8E9FF;
+    --line:#E3E2DD;
+    --radius:14px;
+    --display: 'Space Grotesk', sans-serif;
+    --body: 'Inter', sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--body);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;text-decoration:none;}
+
+  img,svg{display:block;max-width:100%;}
+
+  :focus-visible{
+    outline:2.5px solid var(--indigo);
+    outline-offset:3px;
+  }
+
+  .wrap{
+    max-width:1160px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:var(--muted);
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:6px;height:6px;
+    border-radius:50%;
+    background:var(--coral);
+    display:inline-block;
+  }
+
+  h1,h2,h3{
+    font-family:var(--display);
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(245,246,244,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    height:76px;
+  }
+  .logo{
+    font-family:var(--display);
+    font-weight:700;
+    font-size:19px;
+  }
+  .logo span{color:var(--coral);}
+  .nav-links{
+    display:flex;
+    gap:36px;
+    font-size:14.5px;
+    font-weight:500;
+  }
+  .nav-links a{
+    color:var(--ink-soft);
+    transition:color .15s ease;
+  }
+  .nav-links a:hover{color:var(--ink);}
+  .nav-cta{
+    background:var(--ink);
+    color:var(--bg);
+    padding:10px 20px;
+    border-radius:100px;
+    font-size:14px;
+    font-weight:600;
+    transition:transform .15s ease, background .15s ease;
+  }
+  .nav-cta:hover{background:var(--coral);transform:translateY(-1px);}
+  .nav-toggle{display:none;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:88px 0 64px;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.05fr 0.95fr;
+    gap:48px;
+    align-items:center;
+  }
+  .hero h1{
+    font-size:clamp(38px,4.6vw,58px);
+    line-height:1.04;
+    margin:18px 0 22px;
+  }
+  .hero h1 em{
+    font-style:normal;
+    color:var(--coral);
+  }
+  .hero p.lede{
+    font-size:17.5px;
+    color:var(--ink-soft);
+    max-width:440px;
+    margin-bottom:32px;
+  }
+  .hero-actions{
+    display:flex;
+    gap:14px;
+    align-items:center;
+  }
+  .btn-primary{
+    background:var(--ink);
+    color:var(--bg);
+    padding:15px 26px;
+    border-radius:100px;
+    font-weight:600;
+    font-size:15px;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    transition:transform .15s ease, background .15s ease;
+  }
+  .btn-primary:hover{background:var(--coral);transform:translateY(-2px);}
+  .btn-secondary{
+    color:var(--ink);
+    font-weight:600;
+    font-size:15px;
+    padding:15px 8px;
+    border-bottom:2px solid var(--ink);
+    transition:border-color .15s ease, color .15s ease;
+  }
+  .btn-secondary:hover{border-color:var(--coral);color:var(--coral);}
+
+  /* scattered post-card grid — signature element */
+  .post-cluster{
+    position:relative;
+    height:420px;
+  }
+  .post-card{
+    position:absolute;
+    width:168px;
+    background:var(--bg-card);
+    border-radius:16px;
+    box-shadow:0 18px 40px -18px rgba(20,22,26,0.25);
+    padding:12px;
+    border:1px solid var(--line);
+  }
+  .post-card .thumb{
+    width:100%;
+    aspect-ratio:1/1;
+    border-radius:10px;
+    margin-bottom:10px;
+  }
+  .post-card .meta{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+  .post-card .handle{
+    font-size:11px;
+    font-weight:600;
+    color:var(--ink-soft);
+  }
+  .post-card .stat{
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--coral);
+    font-weight:500;
+  }
+  .pc-1{top:0;left:36px;transform:rotate(-6deg);}
+  .pc-1 .thumb{background:linear-gradient(135deg,#FFD9E1,#FF9FB4);}
+  .pc-2{top:34px;left:230px;transform:rotate(4deg);z-index:2;}
+  .pc-2 .thumb{background:linear-gradient(135deg,#C9CEFF,#4C5FFF);}
+  .pc-3{top:230px;left:8px;transform:rotate(5deg);}
+  .pc-3 .thumb{background:linear-gradient(135deg,#D8F5E3,#7FD9A4);}
+  .pc-4{top:210px;left:222px;transform:rotate(-4deg);z-index:2;}
+  .pc-4 .thumb{background:linear-gradient(135deg,#FFE7B8,#FFB84C);}
+
+  @media (prefers-reduced-motion:no-preference){
+    .post-card{transition:transform .35s ease;}
+    .post-card:hover{transform:translateY(-6px) rotate(0deg) !important;z-index:5;}
+  }
+
+  /* ---------- TICKER — signature metrics strip ---------- */
+  .ticker-band{
+    background:var(--ink);
+    color:var(--bg);
+    overflow:hidden;
+    padding:16px 0;
+    white-space:nowrap;
+  }
+  .ticker-track{
+    display:inline-flex;
+    gap:56px;
+    font-family:var(--mono);
+    font-size:14px;
+    animation:scroll-left 28s linear infinite;
+  }
+  @media (prefers-reduced-motion:reduce){
+    .ticker-track{animation:none;}
+  }
+  .ticker-track span{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    color:#C9CBD3;
+  }
+  .ticker-track b{color:var(--bg);font-weight:600;}
+  .ticker-track .dot{color:var(--coral);}
+  @keyframes scroll-left{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+
+  /* ---------- SECTION SHARED ---------- */
+  section{padding:96px 0;}
+  .section-head{
+    max-width:560px;
+    margin-bottom:52px;
+  }
+  .section-head h2{
+    font-size:clamp(28px,3.2vw,36px);
+    margin-top:14px;
+  }
+
+  /* ---------- SERVICES ---------- */
+  .services-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    overflow:hidden;
+  }
+  .service{
+    background:var(--bg-card);
+    padding:34px 28px;
+  }
+  .service .glyph{
+    font-family:var(--display);
+    font-size:26px;
+    color:var(--coral);
+    margin-bottom:18px;
+  }
+  .service h3{
+    font-size:17px;
+    margin-bottom:8px;
+  }
+  .service p{
+    font-size:14.5px;
+    color:var(--ink-soft);
+  }
+
+  /* ---------- CASE STUDIES ---------- */
+  .case-list{
+    display:flex;
+    flex-direction:column;
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    overflow:hidden;
+  }
+  .case{
+    background:var(--bg-card);
+    display:grid;
+    grid-template-columns:200px 1fr auto;
+    gap:32px;
+    align-items:center;
+    padding:28px 32px;
+  }
+  .case-thumb{
+    width:100%;
+    aspect-ratio:4/3;
+    border-radius:10px;
+  }
+  .case-thumb{position:relative;overflow:hidden;}
+  .case-thumb::after{
+    content:"OLD → NEW";
+    position:absolute;
+    bottom:8px;left:8px;
+    font-family:var(--mono);
+    font-size:9.5px;
+    letter-spacing:.04em;
+    color:rgba(255,255,255,0.85);
+    background:rgba(20,22,26,0.35);
+    padding:3px 7px;
+    border-radius:100px;
+  }
+  .case-1 .case-thumb{background:linear-gradient(100deg,#C9C7C0 46%,#FF4D6D 54%);}
+  .case-2 .case-thumb{background:linear-gradient(100deg,#C9C7C0 46%,#4C5FFF 54%);}
+  .case-3 .case-thumb{background:linear-gradient(100deg,#C9C7C0 46%,#3FAF6E 54%);}
+  .case-tag{
+    font-family:var(--mono);
+    font-size:11.5px;
+    color:var(--indigo);
+    background:var(--indigo-soft);
+    padding:4px 10px;
+    border-radius:100px;
+    display:inline-block;
+    margin-bottom:10px;
+  }
+  .case h3{font-size:19px;margin-bottom:6px;}
+  .case p{font-size:14.5px;color:var(--ink-soft);max-width:440px;}
+  .case-stats{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    text-align:right;
+  }
+  .case-stats .num{
+    font-family:var(--mono);
+    font-size:22px;
+    font-weight:500;
+    color:var(--ink);
+  }
+  .case-stats .num small{
+    display:block;
+    font-size:11px;
+    color:var(--muted);
+    font-weight:400;
+    margin-top:2px;
+  }
+
+  /* ---------- PROCESS ---------- */
+  .process{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:0;
+    position:relative;
+  }
+  .process::before{
+    content:"";
+    position:absolute;
+    top:19px;
+    left:5%;
+    right:5%;
+    height:1px;
+    background:var(--line);
+  }
+  .step{
+    position:relative;
+    padding-right:24px;
+  }
+  .step .num{
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--coral);
+    background:var(--bg);
+    display:inline-block;
+    padding-right:10px;
+    position:relative;
+    z-index:1;
+  }
+  .step h3{
+    font-size:16.5px;
+    margin:16px 0 8px;
+  }
+  .step p{
+    font-size:14px;
+    color:var(--ink-soft);
+  }
+
+  /* ---------- TESTIMONIALS ---------- */
+  .testi-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:24px;
+  }
+  .testi{
+    background:var(--bg-card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:32px;
+  }
+  .testi p.quote{
+    font-family:var(--display);
+    font-size:18px;
+    line-height:1.45;
+    margin-bottom:20px;
+  }
+  .testi .who{
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .avatar{
+    width:38px;height:38px;
+    border-radius:50%;
+  }
+  .who-1 .avatar{background:linear-gradient(135deg,#FFB8C6,#FF4D6D);}
+  .who-2 .avatar{background:linear-gradient(135deg,#B8C0FF,#4C5FFF);}
+  .who small{
+    display:block;
+    color:var(--muted);
+    font-size:12.5px;
+    margin-top:2px;
+  }
+  .who strong{font-size:14px;}
+
+  /* ---------- CONTACT ---------- */
+  .contact{
+    background:var(--ink);
+    color:var(--bg);
+    border-radius:24px;
+    padding:64px 56px;
+    text-align:center;
+    margin:0 32px;
+  }
+  .contact .eyebrow{color:#9A9DA5;}
+  .contact .eyebrow::before{background:var(--coral);}
+  .contact h2{
+    font-size:clamp(30px,4vw,44px);
+    margin:16px 0 26px;
+    max-width:640px;
+    margin-left:auto;
+    margin-right:auto;
+  }
+  .contact-email{
+    font-family:var(--mono);
+    font-size:clamp(18px,2.4vw,24px);
+    color:var(--coral);
+    display:inline-block;
+    border-bottom:1px solid rgba(255,77,109,0.4);
+    padding-bottom:4px;
+    margin-bottom:34px;
+  }
+  .contact-socials{
+    display:flex;
+    justify-content:center;
+    gap:28px;
+    font-size:13.5px;
+    font-family:var(--mono);
+    color:#9A9DA5;
+  }
+  .contact-socials a:hover{color:var(--bg);}
+
+  footer{
+    padding:40px 32px 48px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:13px;
+    color:var(--muted);
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:860px){
+    .nav-links{display:none;}
+    .hero-grid{grid-template-columns:1fr;}
+    .post-cluster{height:340px;margin-top:24px;}
+    .pc-1{left:6%;}
+    .pc-2{left:52%;}
+    .pc-3{left:2%;}
+    .pc-4{left:50%;}
+    .services-grid{grid-template-columns:1fr;}
+    .case{grid-template-columns:1fr;text-align:left;}
+    .case-stats{flex-direction:row;text-align:left;gap:28px;}
+    .process{grid-template-columns:1fr 1fr;row-gap:36px;}
+    .process::before{display:none;}
+    .testi-grid{grid-template-columns:1fr;}
+    .contact{padding:48px 28px;}
+    footer{flex-direction:column;gap:10px;text-align:center;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="logo">Caleb<span>.</span>Dixon</div>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#services">Services</a>
+      <a href="#process">Process</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="#contact" class="nav-cta">Let's talk</a>
+  </nav>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">Logo design &amp; brand identity</p>
+        <h1>Giving tired businesses a <em>fresh new start</em>.</h1>
+        <p class="lede">I design logos and full brand identities that help businesses shed the outdated and step into something sharp, memorable, and built to grow — a revamp that makes customers look twice.</p>
+        <div class="hero-actions">
+          <a href="#work" class="btn-primary">See the work →</a>
+          <a href="#contact" class="btn-secondary">Book a call</a>
+        </div>
+      </div>
+
+      <div class="post-cluster" aria-hidden="true">
+        <div class="post-card pc-1">
+          <div class="thumb"></div>
+          <div class="meta"><span class="handle">Néra Skincare</span><span class="stat">REBRAND</span></div>
+        </div>
+        <div class="post-card pc-2">
+          <div class="thumb"></div>
+          <div class="meta"><span class="handle">Foundry Co.</span><span class="stat">NEW MARK</span></div>
+        </div>
+        <div class="post-card pc-3">
+          <div class="thumb"></div>
+          <div class="meta"><span class="handle">Pulse Studio</span><span class="stat">IDENTITY</span></div>
+        </div>
+        <div class="post-card pc-4">
+          <div class="thumb"></div>
+          <div class="meta"><span class="handle">Wren &amp; Co.</span><span class="stat">LAUNCH</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker-band" aria-hidden="true">
+    <div class="ticker-track">
+      <span class="dot">●</span><span><b>38+</b> brands rebranded</span>
+      <span class="dot">●</span><span><b>120+</b> logo concepts designed</span>
+      <span class="dot">●</span><span><b>12</b> industries served</span>
+      <span class="dot">●</span><span><b>94%</b> client retention</span>
+      <span class="dot">●</span><span><b>38+</b> brands rebranded</span>
+      <span class="dot">●</span><span><b>120+</b> logo concepts designed</span>
+      <span class="dot">●</span><span><b>12</b> industries served</span>
+      <span class="dot">●</span><span><b>94%</b> client retention</span>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">What I do</p>
+        <h2>A fresh start, built one identity at a time.</h2>
+      </div>
+      <div class="services-grid">
+        <div class="service">
+          <div class="glyph">01</div>
+          <h3>Logo design</h3>
+          <p>Custom marks built to work everywhere — from a favicon to a storefront sign.</p>
+        </div>
+        <div class="service">
+          <div class="glyph">02</div>
+          <h3>Brand identity systems</h3>
+          <p>Color, type, and visual language documented into one cohesive system your team can run with.</p>
+        </div>
+        <div class="service">
+          <div class="glyph">03</div>
+          <h3>Rebranding &amp; brand refresh</h3>
+          <p>Modernizing a dated identity without losing the recognition you've already earned.</p>
+        </div>
+        <div class="service">
+          <div class="glyph">04</div>
+          <h3>Brand strategy</h3>
+          <p>Positioning and messaging that gives the new visual identity something real to stand on.</p>
+        </div>
+        <div class="service">
+          <div class="glyph">05</div>
+          <h3>Style guides</h3>
+          <p>A clear reference so the brand stays consistent across every team, vendor, and touchpoint.</p>
+        </div>
+        <div class="service">
+          <div class="glyph">06</div>
+          <h3>Packaging &amp; collateral</h3>
+          <p>Business cards, packaging, signage — the real-world pieces that make a rebrand feel real.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASE STUDIES -->
+  <section id="work">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Selected work</p>
+        <h2>Three brands. Three fresh starts.</h2>
+      </div>
+      <div class="case-list">
+        <div class="case case-1">
+          <div class="case-thumb"></div>
+          <div>
+            <span class="case-tag">Full rebrand</span>
+            <h3>Néra Skincare</h3>
+            <p>Replaced a dated, generic logo with a premium identity system — new mark, palette, and packaging that finally matched the product inside.</p>
+          </div>
+          <div class="case-stats">
+            <span class="num">New<small>logo + full system</small></span>
+            <span class="num">64%<small>lift in brand recall</small></span>
+          </div>
+        </div>
+        <div class="case case-2">
+          <div class="case-thumb"></div>
+          <div>
+            <span class="case-tag">Logo + packaging</span>
+            <h3>Foundry Coffee Co.</h3>
+            <p>Took a hand-drawn logo that no longer scaled and rebuilt it into a clean mark ready for packaging, signage, and wholesale shelves.</p>
+          </div>
+          <div class="case-stats">
+            <span class="num">3<small>new packaging lines</small></span>
+            <span class="num">2.1x<small>wholesale inquiries</small></span>
+          </div>
+        </div>
+        <div class="case case-3">
+          <div class="case-thumb"></div>
+          <div>
+            <span class="case-tag">Brand identity</span>
+            <h3>Pulse Studio</h3>
+            <p>Built a brand new identity from scratch for a launch — logo, type system, and app icon designed to feel instantly recognizable.</p>
+          </div>
+          <div class="case-stats">
+            <span class="num">40+<small>brand assets delivered</small></span>
+            <span class="num">1<small>featured App Store launch</small></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">How it works</p>
+        <h2>Four steps from tired to fresh.</h2>
+      </div>
+      <div class="process">
+        <div class="step">
+          <span class="num">01</span>
+          <h3>Discovery</h3>
+          <p>A deep dive into your business, audience, and what isn't working about the brand you have today.</p>
+        </div>
+        <div class="step">
+          <span class="num">02</span>
+          <h3>Concept &amp; direction</h3>
+          <p>Logo concepts and mood boards exploring a few real directions the new identity could take.</p>
+        </div>
+        <div class="step">
+          <span class="num">03</span>
+          <h3>Design &amp; refine</h3>
+          <p>Building the full identity system around the direction you choose, refined until it's right.</p>
+        </div>
+        <div class="step">
+          <span class="num">04</span>
+          <h3>Launch &amp; guidelines</h3>
+          <p>Final files, a brand guide, and a rollout plan so the fresh start shows up everywhere at once.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Kind words</p>
+        <h2>What clients say after the reveal.</h2>
+      </div>
+      <div class="testi-grid">
+        <div class="testi">
+          <p class="quote">"Our new identity finally looks as premium as the product feels. Caleb translated exactly what we couldn't put into words."</p>
+          <div class="who who-1">
+            <div class="avatar"></div>
+            <div><strong>Maya Chen</strong><small>Founder, Néra Skincare</small></div>
+          </div>
+        </div>
+        <div class="testi">
+          <p class="quote">"The rebrand gave us the confidence to walk into new retail partners. It's the identity we should've had from day one."</p>
+          <div class="who who-2">
+            <div class="avatar"></div>
+            <div><strong>Owen Marsh</strong><small>Owner, Foundry Coffee Co.</small></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact">
+      <p class="eyebrow">Get in touch</p>
+      <h2>Have a business that's ready for a fresh start?</h2>
+      <a href="mailto:hello@calebdixon.co" class="contact-email">hello@calebdixon.co</a>
+      <div class="contact-socials">
+        <a href="#">Instagram</a>
+        <a href="#">Dribbble</a>
+        <a href="#">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="wrap">
+  <span>© 2026 Caleb Dixon. Built for businesses starting fresh.</span>
+  <span>Logo design &amp; brand identity, anywhere.</span>
+</footer>
+
+</body>
+</html>
